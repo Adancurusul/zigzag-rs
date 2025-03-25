@@ -1,5 +1,5 @@
 # zigzag-rs
-
+[![crates.io](https://img.shields.io/crates/v/zigzag-rs.svg)](https://crates.io/crates/zigzag-rs)
 A dependency-free (including no std) ZigZag encoding/decoding Rust library. ZigZag encoding is a method for mapping signed integers to unsigned integers, commonly used in variable-length encoding and data compression.
 
 ## Features
