@@ -1,0 +1,12 @@
+[package]
+name = "zigzag-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Adancurusul <1016867898@qq.com>"]
+description = "A dependency-free ZigZag encoding/decoding library"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Adancurusul/zigzag-rs"
+keywords = ["zigzag", "encoding", "no_std"]
+categories = ["no-std", "encoding"]
+
+
