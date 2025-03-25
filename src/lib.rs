@@ -11,7 +11,7 @@
 //! - Completely dependency-free, usable in `#![no_std]` environments
 //! - Supports all Rust native signed integer types (i8, i16, i32, i64, i128)
 //! - Simple and easy-to-use API with both single value and batch processing
-//! - Zero-copy iterator API for memory-constrained environments
+//! - Iterator-based API for memory-constrained environments
 //! - Efficient implementation optimized for embedded systems
 //! - Error handling with Result types for robust application development
 //!
@@ -53,7 +53,7 @@
 //!     let result = i32::try_zigzag_encode_slice(&values, &mut encoded);
 //!     assert!(result.is_ok());
 //!     
-//!     // Using zero-copy iterator API
+//!     // Using iterator-based API
 //!     let values = [-10, -1, 0, 1, 10];
 //!     // Encode each value on the fly without allocating a buffer
 //!     let encoded_iter = zigzag_rs::zigzag_encode_iter::<i32, _>(values.iter());
@@ -198,7 +198,7 @@ pub trait ZigZag {
 
 /// Creates an iterator that encodes each signed integer from the source iterator.
 ///
-/// This function provides a zero-copy API for ZigZag encoding. The values are encoded
+/// This function provides an iterator-based API for ZigZag encoding. The values are encoded
 /// on-the-fly as the iterator is consumed, without requiring an intermediate buffer.
 ///
 /// # Arguments
@@ -251,7 +251,7 @@ where
 
 /// Creates an iterator that decodes each unsigned integer from the source iterator.
 ///
-/// This function provides a zero-copy API for ZigZag decoding. The values are decoded
+/// This function provides an iterator-based API for ZigZag decoding. The values are decoded
 /// on-the-fly as the iterator is consumed, without requiring an intermediate buffer.
 ///
 /// # Arguments
@@ -464,7 +464,7 @@ mod tests {
             .map(|&v| i32::zigzag_encode(v))
             .collect();
         
-        // Use the zero-copy iterator
+        // Use the iterator-based method
         let encoded: Vec<u32> = zigzag_encode_iter::<i32, _>(values.iter()).collect();
         
         assert_eq!(encoded, expected);
@@ -483,7 +483,7 @@ mod tests {
         let encoded = [199u32, 19, 1, 0, 2, 20, 200];
         let expected = [-100i32, -10, -1, 0, 1, 10, 100];
         
-        // Use the zero-copy iterator
+        // Use the iterator-based method
         let decoded: Vec<i32> = zigzag_decode_iter::<i32, _>(encoded.iter()).collect();
         
         assert_eq!(decoded, expected);
@@ -497,7 +497,7 @@ mod tests {
     }
     
     #[test]
-    fn test_zero_copy_round_trip() {
+    fn test_iterator_based_round_trip() {
         let original = [-1000i16, -100, -10, -1, 0, 1, 10, 100, 1000];
         
         // Encode using iterator

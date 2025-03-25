@@ -8,7 +8,7 @@ A dependency-free (including no std) ZigZag encoding/decoding Rust library. ZigZ
 - Completely dependency-free, usable in `#![no_std]` environments
 - Supports all Rust native signed integer types (i8, i16, i32, i64, i128)
 - Simple and easy-to-use API with both single value and batch processing
-- Zero-copy iterator API for memory-constrained environments
+- Iterator-based API for memory-constrained environments
 - Efficient implementation optimized for embedded systems
 - Error handling with Result types for robust application development
 
@@ -18,7 +18,7 @@ Add the dependency to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-zigzag-rs = "0.2.0"
+zigzag-rs = "0.2.1"
 ```
 
 ### Single value encoding/decoding
@@ -55,9 +55,9 @@ i32::zigzag_decode_slice(&encoded, &mut decoded);
 assert_eq!(values, decoded);
 ```
 
-### Zero-copy iterator API
+### Iterator-based API
 
-The library provides a zero-copy API that encodes or decodes values on-the-fly as the iterator is consumed, without requiring an intermediate buffer:
+The library provides an iterator-based API that encodes or decodes values on-the-fly as the iterator is consumed, without requiring an intermediate buffer:
 
 ```rust
 use zigzag_rs::{ZigZag, zigzag_encode_iter, zigzag_decode_iter};

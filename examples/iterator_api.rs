@@ -1,8 +1,8 @@
 use zigzag_rs::{ZigZag, zigzag_encode_iter, zigzag_decode_iter};
 
 fn main() {
-    println!("ZigZag Zero-Copy API Examples");
-    println!("=============================\n");
+    println!("ZigZag Iterator-based API Examples");
+    println!("================================\n");
     
     // Source data
     let values = [-100, -10, -1, 0, 1, 10, 100];
@@ -29,8 +29,8 @@ fn main() {
     }
     
     // Decoding example
-    println!("\n3. Zero-copy decoding");
-    println!("------------------");
+    println!("\n3. Iterator-based decoding");
+    println!("------------------------");
     let encoded = [199u32, 19, 1, 0, 2, 20, 200];
     println!("Encoded values: {:?}", encoded);
     
@@ -75,8 +75,8 @@ fn main() {
     let duration = start.elapsed();
     println!("Time with buffers: {:?}", duration);
     
-    // Zero-copy approach
-    println!("Zero-copy approach (iterator-based):");
+    // Iterator-based approach
+    println!("Iterator-based approach:");
     let start = std::time::Instant::now();
     
     // Process without intermediate allocations
